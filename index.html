@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Juri Simulado Jason</title>
+
+    <style>
+
+        body {
+
+            display: flex;
+
+            justify-content: start;
+
+            align-items: end;
+
+            height: 100vh;
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            text-align: center;
+
+            background: #0a0f1a;
+
+        }
+
+        .resultado {
+
+            display:flex;
+
+            flex-flow: column;
+
+            background: linear-gradient(to right, #0a0f1a 30%, #162447 100%);
+
+            backdrop-filter: blur(10px);
+
+            justify-content: start;
+
+            padding: 30px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            height: 99%;
+
+            width: 55%;
+
+        }
+
+        
+
+        .resultado h1 {
+
+          font-size: 70px;
+
+          color: white;
+
+        }
+
+        .votes {
+
+            display: flex;
+
+            width: 100%;
+
+            text-justify: start;
+
+            justify-content: end;
+
+            align-items: end;
+
+            flex-flow: column;
+
+            font-size: 24px;
+
+            height: 100%;
+
+        }
+
+        .votes h5 {
+
+          font-size: 70px;
+
+          margin: 0;
+
+          padding:0;
+
+          white-space: 1px;
+
+          color: var(--c);
+
+        }
+
+        .votes p {
+
+          color:#F9E994;
+
+          font-size: 40px;
+
+        }
+
+        .desc {
+
+           display:flex;
+
+            flex-flow: column;
+
+            background: linear-gradient(to right, #0a0f1a 30%, #162447 100%);
+
+            backdrop-filter: blur(10px);
+
+            justify-content: start;
+
+            padding: 30px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            height: 99%;
+
+            width: 45%;
+
+        }
+
+        .desc h1 {
+
+          font-size: 70px;
+
+          color: white;
+
+        }
+
+        .descA {
+
+          display: flex;
+
+          width: 100%;
+
+          height: 100%;
+
+          color: white;
+
+        }
+
+        .descA h3 {
+
+          font-size: 50px;
+
+          font-weight: 250;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="resultado">
+
+        <h1>RESULTADO</h1>
+
+        <div class="votes">
+
+            <h5 style="--c: #12D306;">SIM <span id="aFavor">0</span></h5><br>
+
+            <h5 style="--c: red;">NÃO <span id="contra">0</span></h5><br>
+
+            <h5 style="--c: white;">ABSTENÇÃO <span id="abs">0</span></h5><br>
+
+           <h5 style="--c: orange;">PRESIDENTE <span id="pres">1</span></h5><br>
+
+           <h5 style="--c: #F9E994;">QUORUM <span id="quorum">0</span></h5>
+
+           <p>Votação Aberta<br>Quorum Qualificado</p>
+
+        </div>
+
+    </div>
+
+    <div class="desc">
+
+        <h1>DESCRIÇÃO</h1>
+
+        <div class="descA"><h3>Regulamento ao art. 103 da Constituição Federal, para dispor sobre o conhecimento, a demarcação e a inclusão do pronome neutro na língua portuguesa.</h3></div>
+
+      
+
+    </div>
+
+    <script>
+
+        const socket = new WebSocket("wss://pitch-precious-giant.glitch.me");
+
+        socket.onmessage = (event) => {
+
+            const votos = JSON.parse(event.data);
+
+            document.getElementById("aFavor").innerText = votos.aFavor;
+
+            document.getElementById("contra").innerText = votos.contra;
+
+        };
+
+    </script>
+
+</body>
+
+</html>
